@@ -1,0 +1,82 @@
+﻿@model SitiosPruebaMVC.Models.Victima
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Victima</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoVictima)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoVictima)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Procedencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Procedencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Familia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Familia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PresuntaAfiliacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PresuntaAfiliacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sitio.CodigoSitio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sitio.CodigoSitio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Victima }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

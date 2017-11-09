@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SitiosPruebaDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Familiares">
+          <Key>
+            <PropertyRef Name="Id_Familiar" />
+          </Key>
+          <Property Name="Id_Familiar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Familiar" Type="nvarchar(max)" />
+          <Property Name="Id_Victima" Type="int" />
+        </EntityType>
+        <EntityType Name="Informantes">
+          <Key>
+            <PropertyRef Name="Id_Informante" />
+          </Key>
+          <Property Name="Id_Informante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar(max)" />
+          <Property Name="ApellidoPaterno" Type="nvarchar(max)" />
+          <Property Name="ApellidoMaterno" Type="nvarchar(max)" />
+          <Property Name="Id_Sitio" Type="int" />
+        </EntityType>
+        <EntityType Name="Sitios">
+          <Key>
+            <PropertyRef Name="Id_Sitio" />
+          </Key>
+          <Property Name="Id_Sitio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoSitio" Type="nvarchar" MaxLength="9" />
+          <Property Name="Ubicacion" Type="geography" />
+          <Property Name="Propiedad" Type="int" />
+          <Property Name="Antecedentes" Type="nvarchar(max)" />
+          <Property Name="RelatoAcontecimientos" Type="nvarchar(max)" />
+          <Property Name="FechaEvento" Type="date" />
+          <Property Name="FechaInhumacion" Type="date" />
+          <Property Name="NumeroVictimas" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ExhumacionAnterior" Type="bit" />
+          <Property Name="MaterialesAdicionales" Type="bit" />
+        </EntityType>
+        <EntityType Name="Testigos">
+          <Key>
+            <PropertyRef Name="Id_Testigo" />
+          </Key>
+          <Property Name="Id_Testigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar(max)" />
+          <Property Name="ApellidoPaterno" Type="nvarchar(max)" />
+          <Property Name="ApellidoMaterno" Type="nvarchar(max)" />
+          <Property Name="Id_Sitio" Type="int" />
+        </EntityType>
+        <EntityType Name="Victimas">
+          <Key>
+            <PropertyRef Name="Id_Victima" />
+          </Key>
+          <Property Name="Id_Victima" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoVictima" Type="nvarchar(max)" />
+          <Property Name="NA" Type="nvarchar(max)" />
+          <Property Name="Sexo" Type="int" />
+          <Property Name="Edad" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Procedencia" Type="nvarchar(max)" />
+          <Property Name="Familia" Type="nvarchar(max)" />
+          <Property Name="PresuntaAfiliacion" Type="nvarchar(max)" />
+          <Property Name="Id_Sitio" Type="int" />
+        </EntityType>
+        <Association Name="FK_Familiares_ToVictimas">
+          <End Role="Victimas" Type="Self.Victimas" Multiplicity="0..1" />
+          <End Role="Familiares" Type="Self.Familiares" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Victimas">
+              <PropertyRef Name="Id_Victima" />
+            </Principal>
+            <Dependent Role="Familiares">
+              <PropertyRef Name="Id_Victima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Informantes_ToSitios">
+          <End Role="Sitios" Type="Self.Sitios" Multiplicity="0..1" />
+          <End Role="Informantes" Type="Self.Informantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sitios">
+              <PropertyRef Name="Id_Sitio" />
+            </Principal>
+            <Dependent Role="Informantes">
+              <PropertyRef Name="Id_Sitio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Testigos_ToSitios">
+          <End Role="Sitios" Type="Self.Sitios" Multiplicity="0..1" />
+          <End Role="Testigos" Type="Self.Testigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sitios">
+              <PropertyRef Name="Id_Sitio" />
+            </Principal>
+            <Dependent Role="Testigos">
+              <PropertyRef Name="Id_Sitio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Victimas_ToSitios">
+          <End Role="Sitios" Type="Self.Sitios" Multiplicity="0..1" />
+          <End Role="Victimas" Type="Self.Victimas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sitios">
+              <PropertyRef Name="Id_Sitio" />
+            </Principal>
+            <Dependent Role="Victimas">
+              <PropertyRef Name="Id_Sitio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SitiosPruebaDatabaseModelStoreContainer">
+          <EntitySet Name="Familiares" EntityType="Self.Familiares" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informantes" EntityType="Self.Informantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sitios" EntityType="Self.Sitios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Testigos" EntityType="Self.Testigos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Victimas" EntityType="Self.Victimas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Familiares_ToVictimas" Association="Self.FK_Familiares_ToVictimas">
+            <End Role="Victimas" EntitySet="Victimas" />
+            <End Role="Familiares" EntitySet="Familiares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Informantes_ToSitios" Association="Self.FK_Informantes_ToSitios">
+            <End Role="Sitios" EntitySet="Sitios" />
+            <End Role="Informantes" EntitySet="Informantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Testigos_ToSitios" Association="Self.FK_Testigos_ToSitios">
+            <End Role="Sitios" EntitySet="Sitios" />
+            <End Role="Testigos" EntitySet="Testigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Victimas_ToSitios" Association="Self.FK_Victimas_ToSitios">
+            <End Role="Sitios" EntitySet="Sitios" />
+            <End Role="Victimas" EntitySet="Victimas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SitiosPruebaDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Familiare">
+          <Key>
+            <PropertyRef Name="Id_Familiar" />
+          </Key>
+          <Property Name="Id_Familiar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Familiar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Victima" Type="Int32" />
+          <NavigationProperty Name="Victima" Relationship="Self.FK_Familiares_ToVictimas" FromRole="Familiares" ToRole="Victimas" />
+        </EntityType>
+        <EntityType Name="Informante">
+          <Key>
+            <PropertyRef Name="Id_Informante" />
+          </Key>
+          <Property Name="Id_Informante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Sitio" Type="Int32" />
+          <NavigationProperty Name="Sitio" Relationship="Self.FK_Informantes_ToSitios" FromRole="Informantes" ToRole="Sitios" />
+        </EntityType>
+        <EntityType Name="Sitio">
+          <Key>
+            <PropertyRef Name="Id_Sitio" />
+          </Key>
+          <Property Name="Id_Sitio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoSitio" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="Ubicacion" Type="Geography" />
+          <Property Name="Propiedad" Type="Int32" />
+          <Property Name="Antecedentes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RelatoAcontecimientos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FechaEvento" Type="DateTime" Precision="0" />
+          <Property Name="FechaInhumacion" Type="DateTime" Precision="0" />
+          <Property Name="NumeroVictimas" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ExhumacionAnterior" Type="Boolean" />
+          <Property Name="MaterialesAdicionales" Type="Boolean" />
+          <NavigationProperty Name="Informantes" Relationship="Self.FK_Informantes_ToSitios" FromRole="Sitios" ToRole="Informantes" />
+          <NavigationProperty Name="Testigos" Relationship="Self.FK_Testigos_ToSitios" FromRole="Sitios" ToRole="Testigos" />
+          <NavigationProperty Name="Victimas" Relationship="Self.FK_Victimas_ToSitios" FromRole="Sitios" ToRole="Victimas" />
+        </EntityType>
+        <EntityType Name="Testigo">
+          <Key>
+            <PropertyRef Name="Id_Testigo" />
+          </Key>
+          <Property Name="Id_Testigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Sitio" Type="Int32" />
+          <NavigationProperty Name="Sitio" Relationship="Self.FK_Testigos_ToSitios" FromRole="Testigos" ToRole="Sitios" />
+        </EntityType>
+        <EntityType Name="Victima">
+          <Key>
+            <PropertyRef Name="Id_Victima" />
+          </Key>
+          <Property Name="Id_Victima" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoVictima" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sexo" Type="Int32" />
+          <Property Name="Edad" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Procedencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Familia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PresuntaAfiliacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Sitio" Type="Int32" />
+          <NavigationProperty Name="Familiares" Relationship="Self.FK_Familiares_ToVictimas" FromRole="Victimas" ToRole="Familiares" />
+          <NavigationProperty Name="Sitio" Relationship="Self.FK_Victimas_ToSitios" FromRole="Victimas" ToRole="Sitios" />
+        </EntityType>
+        <Association Name="FK_Familiares_ToVictimas">
+          <End Role="Victimas" Type="Self.Victima" Multiplicity="0..1" />
+          <End Role="Familiares" Type="Self.Familiare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Victimas">
+              <PropertyRef Name="Id_Victima" />
+            </Principal>
+            <Dependent Role="Familiares">
+              <PropertyRef Name="Id_Victima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Informantes_ToSitios">
+          <End Role="Sitios" Type="Self.Sitio" Multiplicity="0..1" />
+          <End Role="Informantes" Type="Self.Informante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sitios">
+              <PropertyRef Name="Id_Sitio" />
+            </Principal>
+            <Dependent Role="Informantes">
+              <PropertyRef Name="Id_Sitio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Testigos_ToSitios">
+          <End Role="Sitios" Type="Self.Sitio" Multiplicity="0..1" />
+          <End Role="Testigos" Type="Self.Testigo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sitios">
+              <PropertyRef Name="Id_Sitio" />
+            </Principal>
+            <Dependent Role="Testigos">
+              <PropertyRef Name="Id_Sitio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Victimas_ToSitios">
+          <End Role="Sitios" Type="Self.Sitio" Multiplicity="0..1" />
+          <End Role="Victimas" Type="Self.Victima" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sitios">
+              <PropertyRef Name="Id_Sitio" />
+            </Principal>
+            <Dependent Role="Victimas">
+              <PropertyRef Name="Id_Sitio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SitiosPruebaDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Familiares" EntityType="Self.Familiare" />
+          <EntitySet Name="Informantes" EntityType="Self.Informante" />
+          <EntitySet Name="Sitios" EntityType="Self.Sitio" />
+          <EntitySet Name="Testigos" EntityType="Self.Testigo" />
+          <EntitySet Name="Victimas" EntityType="Self.Victima" />
+          <AssociationSet Name="FK_Familiares_ToVictimas" Association="Self.FK_Familiares_ToVictimas">
+            <End Role="Victimas" EntitySet="Victimas" />
+            <End Role="Familiares" EntitySet="Familiares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Informantes_ToSitios" Association="Self.FK_Informantes_ToSitios">
+            <End Role="Sitios" EntitySet="Sitios" />
+            <End Role="Informantes" EntitySet="Informantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Testigos_ToSitios" Association="Self.FK_Testigos_ToSitios">
+            <End Role="Sitios" EntitySet="Sitios" />
+            <End Role="Testigos" EntitySet="Testigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Victimas_ToSitios" Association="Self.FK_Victimas_ToSitios">
+            <End Role="Sitios" EntitySet="Sitios" />
+            <End Role="Victimas" EntitySet="Victimas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SitiosPruebaDatabaseModelStoreContainer" CdmEntityContainer="SitiosPruebaDatabaseEntities">
+          <EntitySetMapping Name="Familiares">
+            <EntityTypeMapping TypeName="SitiosPruebaDatabaseModel.Familiare">
+              <MappingFragment StoreEntitySet="Familiares">
+                <ScalarProperty Name="Id_Familiar" ColumnName="Id_Familiar" />
+                <ScalarProperty Name="Familiar" ColumnName="Familiar" />
+                <ScalarProperty Name="Id_Victima" ColumnName="Id_Victima" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Informantes">
+            <EntityTypeMapping TypeName="SitiosPruebaDatabaseModel.Informante">
+              <MappingFragment StoreEntitySet="Informantes">
+                <ScalarProperty Name="Id_Informante" ColumnName="Id_Informante" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="Id_Sitio" ColumnName="Id_Sitio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sitios">
+            <EntityTypeMapping TypeName="SitiosPruebaDatabaseModel.Sitio">
+              <MappingFragment StoreEntitySet="Sitios">
+                <ScalarProperty Name="Id_Sitio" ColumnName="Id_Sitio" />
+                <ScalarProperty Name="CodigoSitio" ColumnName="CodigoSitio" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
+                <ScalarProperty Name="Antecedentes" ColumnName="Antecedentes" />
+                <ScalarProperty Name="RelatoAcontecimientos" ColumnName="RelatoAcontecimientos" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="FechaInhumacion" ColumnName="FechaInhumacion" />
+                <ScalarProperty Name="NumeroVictimas" ColumnName="NumeroVictimas" />
+                <ScalarProperty Name="ExhumacionAnterior" ColumnName="ExhumacionAnterior" />
+                <ScalarProperty Name="MaterialesAdicionales" ColumnName="MaterialesAdicionales" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Testigos">
+            <EntityTypeMapping TypeName="SitiosPruebaDatabaseModel.Testigo">
+              <MappingFragment StoreEntitySet="Testigos">
+                <ScalarProperty Name="Id_Testigo" ColumnName="Id_Testigo" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="Id_Sitio" ColumnName="Id_Sitio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Victimas">
+            <EntityTypeMapping TypeName="SitiosPruebaDatabaseModel.Victima">
+              <MappingFragment StoreEntitySet="Victimas">
+                <ScalarProperty Name="Id_Victima" ColumnName="Id_Victima" />
+                <ScalarProperty Name="CodigoVictima" ColumnName="CodigoVictima" />
+                <ScalarProperty Name="NA" ColumnName="NA" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Procedencia" ColumnName="Procedencia" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="PresuntaAfiliacion" ColumnName="PresuntaAfiliacion" />
+                <ScalarProperty Name="Id_Sitio" ColumnName="Id_Sitio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

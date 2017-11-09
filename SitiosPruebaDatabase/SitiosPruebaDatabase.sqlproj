@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{735122b0-2230-4336-906e-506fd51962a5}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureDatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -57,5 +57,15 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Sitios.sql" />
+    <Build Include="Informantes.sql" />
+    <Build Include="Victimas.sql" />
+    <Build Include="Testigos.sql" />
+    <Build Include="Familiares.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SitiosPruebaDatabase.refactorlog" />
   </ItemGroup>
 </Project>

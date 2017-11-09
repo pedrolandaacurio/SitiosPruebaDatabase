@@ -1,0 +1,104 @@
+﻿@model SitiosPruebaMVC.Models.Sitio
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Sitio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoSitio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoSitio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ubicacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ubicacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propiedad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propiedad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Antecedentes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Antecedentes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RelatoAcontecimientos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RelatoAcontecimientos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaEvento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaEvento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInhumacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInhumacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroVictimas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroVictimas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExhumacionAnterior)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExhumacionAnterior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterialesAdicionales)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaterialesAdicionales)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

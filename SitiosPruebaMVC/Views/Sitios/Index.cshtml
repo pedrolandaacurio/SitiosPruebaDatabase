@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SitiosPruebaMVC.Models.Sitio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoSitio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ubicacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Propiedad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Antecedentes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RelatoAcontecimientos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEvento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaInhumacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroVictimas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExhumacionAnterior)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaterialesAdicionales)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoSitio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ubicacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Propiedad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Antecedentes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RelatoAcontecimientos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaEvento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaInhumacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroVictimas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExhumacionAnterior)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaterialesAdicionales)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Sitio }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Sitio }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Sitio })
+        </td>
+    </tr>
+}
+
+</table>

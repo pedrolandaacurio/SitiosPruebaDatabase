@@ -1,0 +1,98 @@
+﻿@model SitiosPruebaMVC.Models.Sitio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sitio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoSitio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoSitio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ubicacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ubicacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propiedad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propiedad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Antecedentes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Antecedentes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RelatoAcontecimientos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RelatoAcontecimientos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaEvento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaEvento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInhumacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInhumacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroVictimas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroVictimas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExhumacionAnterior)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExhumacionAnterior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterialesAdicionales)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaterialesAdicionales)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Sitio }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
